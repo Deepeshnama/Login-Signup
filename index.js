@@ -6,6 +6,8 @@ import cors from "cors"
 import http from "http"
 import { Server } from "socket.io"
 
+const PORT = process.env.PORT || 5000
+
 const app = express()
 
 const httpServer = http.createServer(app)
@@ -33,7 +35,7 @@ app.use(express.json())
 
 app.use("/user" , userRouter)
 
-httpServer.listen(7800, () => {
+httpServer.listen(PORT, () => {
     db()
-    console.log(`Server is running on http://localhost:7800`)
+    console.log(`Server is running on http://localhost:${PORT}`)
 })
