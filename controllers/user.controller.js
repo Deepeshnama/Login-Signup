@@ -87,4 +87,22 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-export { register, login , getAllUsers };
+const searchUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // console.log(name)
+
+    const user = await User.findById(id);
+
+    if (!user) {
+      res.status(400).json({ msg: "User not defined" });
+    }
+
+    res.status(201).json(user);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
+
+export { register, login , getAllUsers , searchUser };
