@@ -5,6 +5,7 @@ import "dotenv/config"
 import cors from "cors"
 import http from "http"
 import { Server } from "socket.io"
+import chatRouter from "./routes/chat.routes.js"
 
 const PORT = process.env.PORT || 5000
 
@@ -33,7 +34,8 @@ app.use(cors(corsOptions))
 
 app.use(express.json())
 
-app.use("/user" , userRouter)
+app.use("/user", userRouter)
+app.use("/chat", chatRouter);
 
 httpServer.listen(PORT, () => {
     db()
